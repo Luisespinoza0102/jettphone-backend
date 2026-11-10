@@ -4,9 +4,11 @@ const cors = require('cors');
 
 const app = express();
 app.use(cors());
-app.use(express.json());
 
-// Clever Cloud inyecta automáticamente estas variables de entorno al vincular la base de datos MySQL
+// Aumentamos el límite a 50mb para recibir múltiples imágenes en Base64 sin problemas
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+
 const pool = mysql.createPool({
     host: process.env.MYSQL_ADDON_HOST,
     user: process.env.MYSQL_ADDON_USER,
