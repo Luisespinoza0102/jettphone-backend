@@ -5,9 +5,9 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 
-// Aumentamos el límite a 50mb para recibir múltiples imágenes en Base64 sin problemas
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
+// Límite ampliado para permitir múltiples imágenes en Base64
+app.use(express.json({ limit: '100mb' }));
+app.use(express.urlencoded({ limit: '100mb', extended: true }));
 
 const pool = mysql.createPool({
     host: process.env.MYSQL_ADDON_HOST,
